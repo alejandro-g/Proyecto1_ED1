@@ -18,3 +18,6 @@ ADTList.o: ADTList.h ADTList.cpp Object.h Object.cpp
 
 VSArrayList.o: ADTList.h ADTList.cpp Object.h Object.cpp Persona.h Persona.cpp
 	g++ -c VSArrayList.cpp 
+
+clean:
+	rm -f *.o main
