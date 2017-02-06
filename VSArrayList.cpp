@@ -56,3 +56,68 @@ VSArrayList::VSArrayList(int current_capacity, int delta){
   this-> current_capacity = current_capacity;
   this-> delta = delta;
 }
+
+Object* VSArrayList::first()const{
+  return array[0];
+}
+
+Object* VSArrayList::last()const{
+  return array[size - 1];
+}
+
+int VSArrayList::indexOf(Object* element)const{
+  int temporal = 0;
+  for (int i = 0; i < size; i++) {//recorrer el arreglo para conseguir objeto
+    if(array[i] == element){
+      temporal = i;
+    }
+  }
+  return temporal;
+}
+
+Object* VSArrayList::get(int posicion)const{
+  return array[posicion];
+}
+
+int VSArrayList::capacity()const{
+  return current_capacity;
+}
+
+bool VSArrayList::isEmpty()const{
+  if(size != 0){
+    return false;
+  }else{
+    return true;
+  }
+}
+
+bool VSArrayList::isFull()const{
+  if(size == current_capacity){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+Object* VSArrayList::remove(int posicion){
+  Object* element = array[posicion];
+  array[posicion] = NULL;
+  delete array[posicion];
+
+  for (int i = posicion; i < size; i++) {
+    array[i] = array[i + 1];
+  }
+  array[size - 1] = NULL;
+  delete array[size - 1];
+  size--;
+  return element;
+}
+
+void VSArrayList::clear(){
+  for (int i = 0; i < size; i++) {
+    if(array[i]){
+      delete array[i];
+      array[i] = NULL;
+    }
+  }
+}
